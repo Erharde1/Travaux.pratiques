@@ -1,0 +1,11 @@
+
+import random
+
+def combat_monstres():
+    niveau_vie= 20
+    print("Bienvenue! Dans ce jeu, vous allez devoir vaincre des monstres, et accumuler le plus de victoires possibles sans mourir.\nLe combat se fera avec des dés. Si le nombre affiché sur les dés est supérieur au niveau du monstre, victoire! sinon, défaite.\nVous commencez avec",niveau_vie,"points de vie")
+    
+    depart= int(input("Vous tombez face avec un adversaire de difficulté: ",force_adversaire,"\nQue voulez-vous faire?"))
+
+
+combat_monstres()
