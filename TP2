@@ -1,0 +1,25 @@
+#jeu de devinettes
+#l'ordinateur doit dire si le chiffre est plus petit ou plus grand que l'essai
+
+#l'usager doit choisir les bornes
+
+import random
+def jeu_devinette():
+    print("Je vais choisir un chiffre au hasard, et vous allez devoir le deviner. \nÀ vous de définir les bornes.")
+    minimum= int(input("Quel sera le chiffre minimum?"))
+    maximum= int(input("Quel sera le chiffre maximum?"))
+    print("Le chiffre se situe entre", minimum, "et", maximum,)
+
+#l'usager doit essayer de deviner le chiffre
+
+    nombre=random.randint(minimum,maximum)
+    essai= -1
+    while essai != nombre:
+        essai = int(input("Entrez votre essai: "))
+        if essai < nombre:
+            print("Mauvais choix, le nombre est plus grand.")
+        elif essai > nombre:
+            print("Mauvais choix, le nombre est plus petit.")
+    print("Bravo! Vous avez deviné le chiffre.")
+
+jeu_devinette()
