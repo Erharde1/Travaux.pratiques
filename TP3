@@ -3,9 +3,24 @@ import random
 
 def combat_monstres():
     niveau_vie= 20
+    nombre_victoire=0
+    nombre_defaitres=0
     print("Bienvenue! Dans ce jeu, vous allez devoir vaincre des monstres, et accumuler le plus de victoires possibles sans mourir.\nLe combat se fera avec des dés. Si le nombre affiché sur les dés est supérieur au niveau du monstre, victoire! sinon, défaite.\nVous commencez avec",niveau_vie,"points de vie")
-    
-    depart= int(input("Vous tombez face avec un adversaire de difficulté: ",force_adversaire,"\nQue voulez-vous faire?"))
-
+    force_adversaire = random.randint(1,5)
+    boucle=true
+        while boucle:
+        print("Vous tombez face avec un adversaire de difficulté de:", force_adversaire,"\nQue voulez vous faire?")
+        choix=int(input("1.Combatre cet adversaire \n2.Contourner cet adversaire et aller ouvrir une autre porte \n3.Afficher les règles du jeu \n4.Quitter la partie"))
+        if choix==1:
+            lance_de = random.randint(1,6)
+            print("Vous avez roulé un",lance_de,)
+            if lance_de < force_adversaire:
+                print("L'adversaire est plus fort que vous. Vous perdez",force_adversaire," point(s) de vie")
+                niveau_vie-=force_adversaire
+                print("Il vous reste",niveau_vie,"point(s) de vie")
+                nombre_defaites +=1
+            elif lance_de > force_adversaire:
+                print("Vous avez vaincu l'adversaire.")
+                nombre_victoires += 1
 
 combat_monstres()
