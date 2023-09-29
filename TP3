@@ -3,24 +3,105 @@ import random
 
 def combat_monstres():
     niveau_vie= 20
-    nombre_victoire=0
-    nombre_defaitres=0
-    print("Bienvenue! Dans ce jeu, vous allez devoir vaincre des monstres, et accumuler le plus de victoires possibles sans mourir.\nLe combat se fera avec des dés. Si le nombre affiché sur les dés est supérieur au niveau du monstre, victoire! sinon, défaite.\nVous commencez avec",niveau_vie,"points de vie")
-    force_adversaire = random.randint(1,5)
-    boucle=true
-        while boucle:
+    nombre_victoires=0
+    nombre_defaites=0
+    victoires_consecutives=0
+    potion_vie=5
+    penalite=1
+
+    print("Bienvenue! Dans ce jeu, vous allez devoir vaincre des monstres, et accumuler le plus de victoires possibles sans mourir.")
+
+
+    while niveau_vie > 0:
+        force_adversaire = random.randint(2, 11)
+        force_boss = random.randint(7, 11)
         print("Vous tombez face avec un adversaire de difficulté de:", force_adversaire,"\nQue voulez vous faire?")
-        choix=int(input("1.Combatre cet adversaire \n2.Contourner cet adversaire et aller ouvrir une autre porte \n3.Afficher les règles du jeu \n4.Quitter la partie"))
+        choix=int(input(" 1.Combatre cet adversaire \n 2.Contourner cet adversaire et aller ouvrir une autre porte \n 3.Afficher les règles du jeu \n 4.Quitter la partie"))
+
         if choix==1:
             lance_de = random.randint(1,6)
-            print("Vous avez roulé un",lance_de,)
-            if lance_de < force_adversaire:
-                print("L'adversaire est plus fort que vous. Vous perdez",force_adversaire," point(s) de vie")
-                niveau_vie-=force_adversaire
-                print("Il vous reste",niveau_vie,"point(s) de vie")
-                nombre_defaites +=1
-            elif lance_de > force_adversaire:
-                print("Vous avez vaincu l'adversaire.")
+            lance_de2 = random.randint(1, 6)
+            total_de = lance_de+lance_de2
+            print("Vous avez roulé un",lance_de, "et un", lance_de2, "total de",total_de,)
+
+            if total_de > force_adversaire:
+                print("Vous avez vaincu l'adversaire, vous gagnez",force_adversaire,"point(s) de vie")
+                niveau_vie += force_adversaire
+                print("Vous avez", niveau_vie, "point(s) de vie")
                 nombre_victoires += 1
+                print("Nombre de victoires: ",nombre_victoires,"\nNombre de défaites: ",nombre_defaites,)
+                victoires_consecutives += 1
+                print("Victoires consécutives: ",victoires_consecutives,)
+
+            else:
+                print("L'adversaire est plus fort que vous. Vous perdez", force_adversaire, " point(s) de vie")
+                niveau_vie -= force_adversaire
+                print("Il vous reste", niveau_vie, "point(s) de vie")
+                nombre_defaites += 1
+                print("Nombre de victoires: ", nombre_victoires, "\nNombre de défaites: ", nombre_defaites,)
+                victoires_consecutives = 0
+                print("Victoires consécutives: ",victoires_consecutives,)
+
+        elif choix==2:
+            print("Vous contournez l'adversaire, et ouvrez une autre porte. Pénalité de 1 point de vie.")
+            niveau_vie -= penalite
+            print("Il vous reste", niveau_vie, "point(s) de vie")
+
+        elif choix==3:
+            print("  1. Pour gagner des points de vie, l'usager doit avoir un total aux dés supérieur à la force du monstre.\n  2.Contourner le monstre et aller ouvrir une autre porte coute 1 point de vie.\n  3.L'usager perd le combat si son total aux dés est inférieur (ou égal) à la force du monstre. Dans ce cas, l'usager perdra autant de points de vie que la force du monstre affronté. \n  4.L'usager commence la partie avec 20 points de vie.")
+
+        elif choix==4:
+            print("Merci d'avoir joué et à la prochaine!")
+            exit()
+
+        if victoires_consecutives == 3:
+
+            print("Vous tombez face à face avec le boss de difficulté de:", force_boss,"!\nQue voulez vous faire?")
+            choix = int(input( " 1.Combatre cet adversaire \n 2.Contourner cet adversaire et aller ouvrir une autre porte \n 3.Afficher les règles du jeu \n 4.Quitter la partie"))
+
+            if choix==1:
+                lance_de = random.randint(1,6)
+                lance_de2 = random.randint(1, 6)
+                total_de = lance_de+lance_de2
+                print("Vous avez roulé un",lance_de, "et un", lance_de2, "total de",total_de,)
+
+                if total_de > force_boss:
+                    print("Vous avez vaincu l'adversaire, vous gagnez",force_boss,"point(s) de vie et une potion de vie!")
+                    niveau_vie += force_boss+potion_vie
+                    print("Vous avez", niveau_vie, "point(s) de vie")
+                    nombre_victoires += 1
+                    print("Nombre de victoires: ",nombre_victoires,"\nNombre de défaites: ",nombre_defaites,)
+                    victoires_consecutives = 0
+
+                else:
+                    print("L'adversaire est plus fort que vous. Vous perdez", force_boss, " point(s) de vie")
+                    niveau_vie -= force_boss
+                    print("Il vous reste", niveau_vie, "point(s) de vie")
+                    nombre_defaites += 1
+                    print("Nombre de victoires: ", nombre_victoires, "\nNombre de défaites: ", nombre_defaites,)
+                    victoires_consecutives = 0
+
+            elif choix==2:
+                print("Vous contournez l'adversaire, et ouvrez une autre porte. Pénalité de 1 point de vie.")
+                niveau_vie -= penalite
+                print("Il vous reste", niveau_vie, "point(s) de vie")
+
+            elif choix==3:
+                print("  1. Pour gagner des points de vie, l'usager doit avoir un total aux dés supérieur à la force du monstre.\n  2.Contourner le monstre et aller ouvrir une autre porte coute 1 point de vie.\n  3.L'usager perd le combat si son total aux dés est inférieur (ou égal) à la force du monstre. Dans ce cas, l'usager perdra autant de points de vie que la force du monstre affronté. \n  4.L'usager commence la partie avec 20 points de vie.")
+
+            elif choix==4:
+                print("Merci d'avoir joué et à la prochaine!")
+                exit()
+
+    while niveau_vie <= 0:
+        print("Il ne vous reste plus de points de vie, vous avez perdu")
+        rejouer=str(input("Voulez vous rejouer? (o/n)"))
+        if rejouer == o:
+            combat_monstres()
+        elif rejouer == n:
+            print("Merci d'avoir joué et a la prochaine!")
+            exit()
+
+
 
 combat_monstres()
