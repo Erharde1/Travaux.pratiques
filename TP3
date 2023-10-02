@@ -10,6 +10,7 @@ def combat_monstres():
     potion_vie=5
     penalite=1
     choix=0
+    adversaires_vaincus=0
 
     print("Bienvenue! Dans ce jeu, vous allez devoir vaincre des monstres, et accumuler le plus de victoires possibles sans mourir.")
 
@@ -17,11 +18,11 @@ def combat_monstres():
     while niveau_vie > 0:
         if choix != 3:
             force_adversaire = random.randint(2, 11)
-#le boss doit etre plus fort qu'un adversaire normal, mais quand meme possible a battre
+#le boss doit etre plus fort qu'un adversaire normal
             force_boss = random.randint(7, 11)
             print("Vous tombez face avec un adversaire de difficulté de:", force_adversaire,"\nQue voulez vous faire?")
             choix=int(input(" 1.Combatre cet adversaire \n 2.Contourner cet adversaire et aller ouvrir une autre porte \n 3.Afficher les règles du jeu \n 4.Quitter la partie"))
-#le niveau de vie ne doit pas changer si on veut simplement voir les regles
+#le niveau de vie de l'adversaire ne doit pas changer si on veut simplement voir les regles
         else:
             print("Vous tombez face avec un adversaire de difficulté de:", force_adversaire, "\nQue voulez vous faire?")
             choix = int(input(
@@ -41,6 +42,7 @@ def combat_monstres():
                 print("Nombre de victoires: ",nombre_victoires,"\nNombre de défaites: ",nombre_defaites,)
                 victoires_consecutives += 1
                 print("Victoires consécutives: ",victoires_consecutives,)
+                adversaires_vaincus += 1
 
             else:
                 print("L'adversaire est plus fort que vous. Vous perdez", force_adversaire, " point(s) de vie")
@@ -80,6 +82,7 @@ def combat_monstres():
                     print("Vous avez", niveau_vie, "point(s) de vie")
                     nombre_victoires += 1
                     print("Nombre de victoires: ",nombre_victoires,"\nNombre de défaites: ",nombre_defaites,)
+                    adversaires_vaincus += 1
 #le nombre de victoires consecutives doit retourner a 0, sinon le boss ne reapparaitra pas
                     victoires_consecutives = 0
 
@@ -104,12 +107,12 @@ def combat_monstres():
                 exit()
 #si le joueur tombe a 0 ou dans les negatifs, le jeu s'arrete
     while niveau_vie <= 0:
-        print("Il ne vous reste plus de points de vie, vous avez perdu")
+        print("Il ne vous reste plus de points de vie. Vous avez vaincu", adversaires_vaincus,"monstre(s)!")
         rejouer=str(input("Voulez vous rejouer? (o/n)"))
         if rejouer == "o":
             combat_monstres()
         elif rejouer == "n":
-            print("Merci d'avoir joué et a la prochaine!")
+            print("Merci d'avoir joué et à la prochaine!")
             exit()
 
 
