@@ -20,6 +20,8 @@ def jeu_devinette():
             print("Mauvais choix, le nombre est plus petit.")
         else:
             print("Bravo! Vous avez deviné le chiffre en",nbr_essai,"essai(s).")
+            boucle = False
+
 jouer_encore = None
 while jouer_encore != "n":
     jeu_devinette()
