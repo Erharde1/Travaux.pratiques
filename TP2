@@ -24,15 +24,11 @@ def jeu_devinette():
             print("Mauvais choix, le nombre est plus petit.")
         else:
             print("Bravo! Vous avez deviné le chiffre en",nbr_essai,"essai(s).")
-            jouer_encore()
-
-def jouer_encore():
-    while True:
-        jouer_encore=input("Voulez vous rejouer? (o/n)")
-        if jouer_encore=="o":
-            jeu_devinette()
-        elif jouer_encore=="n":
-            print("Merci et au revoir!")
-            exit()
+           jouer_encore=input("Voulez vous rejouer? (o/n)")
+            if jouer_encore=="o":
+                jeu_devinette()
+            elif jouer_encore=="n":
+                print("Merci et au revoir!")
+                exit()
 
 jeu_devinette()
