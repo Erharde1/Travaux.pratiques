@@ -9,7 +9,6 @@ def jeu_devinette():
     print("Le chiffre se situe entre",minimum, "et",maximum,)
     boucle = True
     nombre = random.randint(minimum,maximum)
-    jouer_encore = "o"
     #l'usager doit deviner le chiffre
     nbr_essai = 0
     while boucle:
@@ -21,8 +20,9 @@ def jeu_devinette():
             print("Mauvais choix, le nombre est plus petit.")
         else:
             print("Bravo! Vous avez deviné le chiffre en",nbr_essai,"essai(s).")
-    while jouer_encore != "n":
-        jeu_devinette()
-        jouer_encore=input("Voulez vous rejouer? (o/n)")
+jouer_encore = None
+while jouer_encore != "n":
+    jeu_devinette()
+    jouer_encore=input("Voulez vous rejouer? (o/n)")
 
-    print("Merci et au revoir!")
+print("Merci et au revoir!")
