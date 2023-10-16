@@ -106,14 +106,12 @@ def combat_monstres():
                 print("Merci d'avoir joué et à la prochaine!")
                 exit()
 #si le joueur tombe a 0 ou dans les negatifs, le jeu s'arrete
-    while niveau_vie <= 0:
-        print("Il ne vous reste plus de points de vie. Vous avez vaincu", adversaires_vaincus,"monstre(s)!")
-        rejouer=str(input("Voulez vous rejouer? (o/n)"))
-        if rejouer == "o":
-            combat_monstres()
-        elif rejouer == "n":
-            print("Merci d'avoir joué et à la prochaine!")
-            exit()
+rejouer = None
+while rejouer != "n":
+    combat_monstres()
+    rejouer = str(input("Voulez vous rejouer? (o/n)"))
+print("Merci d'avoir joué et à la prochaine!")
+exit()
 
 
 
