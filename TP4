@@ -7,7 +7,7 @@ SCREEN_HEIGHT = 600
 COLORS = [arcade.color.BLUE, arcade.color.YELLOW, arcade.color.RED]
 
 class ballon:
-    def __int__(self, x, y, change_x, change_y):
+    def __init__(self, x, y, change_x, change_y):
         self.rayon = random.randint(10, 20)
         self.color = COLORS[0]
         self.x = x
@@ -21,22 +21,22 @@ class ballon:
         self.y += self.change_y
 
 #s'assurer que la balle ne sorte pas de l'ecran
-        if x < rayon:
-            x *= -1
-        if x > SCREEN_WIDTH - rayon:
-            x *= -1
-        if y < rayon:
-            y *= -1
-        if y > SCREEN_WIDTH - rayon:
-            y *= -1
+        if self.x < self.rayon:
+            self.change_x *= -1
+        if self.x > SCREEN_WIDTH - self.rayon:
+            self.change_x *= -1
+        if self.y < self.rayon:
+            self.change_y *= -1
+        if self.y > SCREEN_HEIGHT - self.rayon:
+            self.change_y *= -1
 
 #dessiner le rectangle
     def on_draw(self):
-        arcade.draw_circle_filled(x,y,rayon, color)
+        arcade.draw_circle_filled(self.x,self.y,self.rayon, self.color)
 
 
 class rectangle:
-    def __int__(self, x, y, change_x, change_y):
+    def __init__(self, x, y, change_x, change_y):
         self.width = 60
         self.height = 20
         self.color = COLORS[1]
@@ -51,14 +51,14 @@ class rectangle:
         self.y += self.change_y
 
 #s'assurer que le rectangle ne sorte pas de l'ecran
-        if x < width:
-            x *= -1
-        if x > SCREEN_WIDTH - width:
-            x *= -1
-        if y < height:
-            y *= -1
-        if y > SCREEN_HEIGHT - height:
-            y *= -1
+        if self.x < self.width:
+            self.change_x *= -1
+        if self.x > SCREEN_WIDTH - self.width:
+            self.change_x *= -1
+        if self.y < self.height:
+            self.change_y *= -1
+        if self.y > SCREEN_HEIGHT - self.height:
+            self.change_y *= -1
 
 #dessiner le rectangle
     def on_draw(self):
@@ -91,11 +91,11 @@ class MyGame(arcade.Window):
 #dessiner les balles
         if boutton == arcade.MOUSE_BUTTON_LEFT:
             balle = ballon(random.randint(20, 300), random.randint(20, 300), 1, 1)
-            self.ballon.append(balle)
+            self.bal.append(balle)
 #dessiner les rectangles
         if boutton == arcade.MOUSE_BUTTON_RIGHT:
-            rectum = rectangle(random.randint(20, 300), random.randint(20, 300),1,1,1,1)
-            self.rectangle.append(rectum)
+            recty = rectangle(random.randint(20, 300), random.randint(20, 300),1,1)
+            self.recty.append(recty)
 
 
 def main():
