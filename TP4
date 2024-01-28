@@ -37,8 +37,8 @@ class ballon:
 
 class rectangle:
     def __init__(self, x, y, change_x, change_y):
-        self.width = 60
-        self.height = 20
+        self.width = random.randint(40, 80)
+        self.height = random.randint(10,30)
         self.color = COLORS[1]
         self.x = x
         self.y = y
